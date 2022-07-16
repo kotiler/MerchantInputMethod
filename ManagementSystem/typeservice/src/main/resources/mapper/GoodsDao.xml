@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.type.dao.GoodsDao">
+    <select id="checkEmailNum" resultType="Integer">
+        SELECT count(*) FROM user
+        WHERE u_email= #{u_email}
+    </select>
+    <select id="showGoods" resultType="com.type.bean.Goods">
+        SELECT goods.g_no,goods.g_picture,goods.g_price,goods.g_description,goods.g_name,
+               goods.g_addDate,goods.g_checkState FROM goods,user
+        where u_email= #{u_email} and user.c_no=goods.c_no
+    </select>
+
+    <select id="checkGoodsNum" resultType="Integer">
+        SELECT count(*) FROM goods
+        WHERE g_name= #{g_name} and c_no=(select c_no from user where u_email=#{u_email})
+    </select>
+
+    <insert id="addGoods">
+        insert into goods(g_picture, g_price ,g_description,g_name,g_addDate,g_checkState,c_no)
+            value (#{g_picture},#{g_price},#{g_description},#{g_name},#{g_addDate},'2',
+                   (select c_no from user where u_email=#{u_email}))
+    </insert>
+
+    <delete id="deleteGoods">
+        delete from goods WHERE g_name= #{g_name} and c_no=(select c_no from user where u_email=#{u_email})
+    </delete>
+
+    <update id="modifyGoods">
+        update goods set g_picture=#{g_picture},g_price=#{g_price},g_description=#{g_description},g_name=#{new_g_name}
+        where g_name= #{g_name} and c_no=(select c_no from user where u_email=#{u_email})
+    </update>
+
+    <select id="searchGoods" resultType="com.type.bean.Goods">
+        SELECT goods.* FROM goods,user
+        where IF (#{g_name} is not null, g_name like CONCAT('%',#{g_name},'%'), 1 = 1) and
+            IF (#{g_addDate} is not null, g_addDate =#{g_addDate},1 = 1) and
+            IF (#{g_checkState} != 0,  g_checkState =#{g_checkState},1 = 1) and
+            IF (#{g_no} != 0, g_no =#{g_no}, 1 = 1) and
+            IF (#{min_price} != 0, g_price >=#{min_price},1 = 1) and
+            IF (#{max_price} != 0, #{max_price}>=g_price,1 = 1) and
+            IF (#{g_description} is not null, g_description like CONCAT('%',#{g_description},'%'), 1 = 1) and
+            u_email= #{u_email} and user.c_no=goods.c_no
+
+    </select>
+
+    <select id="showUncheckedGoods" resultType="com.type.bean.Goods">
+        SELECT goods.g_no,goods.g_picture,goods.g_price,goods.g_description,goods.g_name,
+               goods.g_addDate,goods.g_checkState FROM goods,user
+        where u_email= #{u_email} and user.c_no=goods.c_no and goods.g_checkState = '2'
+    </select>
+
+    <update id="checkGoods">
+        update goods set g_checkState = '1'
+        where g_name= #{g_name} and c_no=(select c_no from user where u_email=#{u_email})
+    </update>
+
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.type.dao.CompanyDao">
+    <select id="checkEmailNum" resultType="Integer">
+        SELECT count(*) FROM user
+        WHERE u_email= #{u_email} and u_identity=1
+    </select>
+
+    <select id="showCompany" resultType="com.type.bean.Company">
+        SELECT c_no,c_name,c_type,c_connect,c_address,c_code FROM company
+    </select>
+
+    <select id="checkCompanyNum" resultType="Integer">
+        SELECT count(*) FROM company
+        WHERE c_name= #{c_name}
+    </select>
+
+    <insert id="register">
+        insert into company(c_name,c_type,c_connect,c_address,c_code)
+            value (#{c_name},#{c_type},"null",#{c_address},"null");
+    </insert>
+
+    <insert id="addAdministrator">
+        insert into user(u_email, u_password, u_identity ,u_name,u_gender,u_age,c_no)
+            value (#{u_email},#{u_password},2,"null",1,0,(select c_no from company where c_name=#{c_name}))
+    </insert>
+
+    <delete id="deleteCompany">
+        delete from company WHERE c_name= #{c_name}
+    </delete>
+
+    <update id="modifyCompany">
+        update goods set g_picture=#{g_picture},g_price=#{g_price},g_description=#{g_description},g_name=#{new_g_name}
+        where g_name= #{g_name} and c_no=(select c_no from user where u_email=#{u_email})
+    </update>
+
+    <select id="searchCompany" resultType="com.type.bean.Company">
+        SELECT company.* FROM company
+        where IF (#{c_name} is not null, c_name like CONCAT('%',#{c_name},'%'), 1 = 1) and
+            IF (#{c_type} is not null, c_type like CONCAT('%',#{c_type},'%'), 1 = 1) and
+            IF (#{c_connect} is not null, c_connect like CONCAT('%',#{c_connect},'%'), 1 = 1) and
+            IF (#{c_address} is not null, c_address like CONCAT('%',#{c_address},'%'), 1 = 1)
+
+    </select>
+
+    <select id="showUncheckedCompany" resultType="com.type.bean.Company">
+        SELECT goods.g_no,goods.g_picture,goods.g_price,goods.g_description,goods.g_name,
+               goods.g_addDate,goods.g_checkState FROM goods,user
+        where u_email= #{u_email} and user.c_no=goods.c_no and goods.g_checkState = '2'
+    </select>
+
+    <update id="checkCompany">
+        update goods set g_checkState = '1'
+        where g_name= #{g_name} and c_no=(select c_no from user where u_email=#{u_email})
+    </update>
+</mapper>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.type.dao.WordsDao">
+    <select id="checkEmailNum" resultType="Integer">
+        SELECT count(*) FROM user
+        WHERE u_email= #{u_email}
+    </select>
+    <select id="showWords" resultType="com.type.bean.Words">
+        SELECT words.w_no, words.w_content,words.w_createDate,words.w_checkState FROM words,user
+        where u_email= #{u_email} and user.c_no=words.c_no
+    </select>
+
+    <select id="checkWordsNum" resultType="Integer">
+        SELECT count(*) FROM words
+        WHERE w_content= #{w_content} and c_no=(select c_no from user where u_email=#{u_email})
+    </select>
+
+    <insert id="addWords">
+        insert into words(w_content, w_createDate ,w_checkState,c_no)
+            value (#{w_content},#{w_createDate},'2',
+                   (select c_no from user where u_email=#{u_email}))
+    </insert>
+
+    <delete id="deleteWords">
+        delete from words where w_content= #{w_content} and
+            c_no=(select c_no from user where u_email=#{u_email})
+    </delete>
+
+    <update id="modifyWords">
+        update words set w_content=#{new_w_content}
+        where w_content= #{w_content} and c_no=(select c_no from user where u_email=#{u_email})
+    </update>
+
+
+    <select id="searchWords" resultType="com.type.bean.Words">
+        SELECT words.* FROM words,user
+        where IF (#{w_no} != 0, w_no =#{w_no}, 1 = 1) and
+            IF (#{w_content} is not null, w_content like CONCAT('%',#{w_content},'%'),1 = 1) and
+            IF (#{w_createDate} is not null, w_createDate =#{w_createDate},1 = 1) and
+            IF (#{w_checkState} != 0,  w_checkState =#{w_checkState},1 = 1) and
+              u_email= #{u_email} and user.c_no=words.c_no
+    </select>
+
+    <select id="showUncheckedWords" resultType="com.type.bean.Words">
+        SELECT words.w_no, words.w_content,words.w_createDate,words.w_checkState FROM words,user
+        where u_email= #{u_email} and user.c_no=words.c_no and words.w_checkState = '2'
+    </select>
+
+    <update id="checkWords">
+        update words set w_checkState = '1'
+        where w_content= #{w_content} and c_no=(select c_no from user where u_email=#{u_email})
+    </update>
+
+</mapper>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="6dp"
+    android:paddingRight="12dp"
+    android:orientation="vertical"
+    android:background="@color/lightGray">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#F8F8F8"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+           />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingRight="8dp"
+            android:paddingLeft="5dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/goodsname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#222222" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="30dp">
+
+                <TextView
+                    android:id="@+id/goodsdescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textStyle="bold"
+                    android:textColor="#BFBFBF"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/goodsprice"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="#FF2400"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#F8F8F8"/>
+
+</LinearLayout>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="100dp"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:paddingLeft="12dp"-->
+<!--    android:paddingRight="12dp"-->
+<!--    android:orientation="vertical">-->
+
+
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0.5dp"-->
+<!--        android:background="#F8F8F8"/>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:paddingTop="10dp"-->
+<!--        android:paddingBottom="10dp"-->
+<!--        android:orientation="horizontal">-->
+<!--        <RelativeLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="2"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/goodsname"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentTop="true"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textColor="#222222" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/goodsdescription"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentBottom="true"-->
+<!--                android:textSize="10sp"-->
+<!--                android:textColor="#BFBFBF"-->
+<!--                />-->
+<!--            <TextView-->
+<!--                android:id="@+id/goodsprice"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentBottom="true"-->
+<!--                android:textSize="10sp"-->
+<!--                android:textColor="#BFBFBF"-->
+<!--                />-->
+<!--        </RelativeLayout>-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/image"-->
+<!--            android:layout_width="10dp"-->
+<!--            android:layout_weight="3"-->
+<!--            android:layout_height="match_parent"-->
+<!--             />-->
+<!--    </LinearLayout>-->
+
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0.5dp"-->
+<!--        android:background="#F8F8F8"/>-->
+
+
+<!--</LinearLayout>-->

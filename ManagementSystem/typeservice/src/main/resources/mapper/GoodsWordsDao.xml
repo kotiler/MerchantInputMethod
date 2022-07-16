@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.type.dao.GoodsWordsDao">
+    <select id="checkEmailNum" resultType="Integer">
+        SELECT count(*) FROM user
+        WHERE u_email= #{u_email}
+    </select>
+
+    <select id="checkGoodsWordsNum" resultType="Integer">
+        SELECT count(*) FROM goods,user,words
+        WHERE u_email= #{u_email} and user.c_no=goods.c_no and goods.g_name= #{g_name} and goods.g_no=words.g_no and words.w_content=#{w_content}
+    </select>
+
+    <select id="showGoodsWords" resultType="com.type.bean.Words">
+        SELECT words.* FROM goods,user,words
+        where u_email= #{u_email} and user.c_no=goods.c_no and goods.g_name= #{g_name} and goods.g_no=words.g_no
+    </select>
+
+    <insert id="addGoodsWords">
+        insert into words(w_content, w_createDate ,w_checkState,c_no,g_no)
+            value (#{w_content},#{w_createDate},'2',(select c_no from user where u_email=#{u_email}),(select goods.g_no from goods,user where user.u_email= #{u_email} and user.c_no=goods.c_no and goods.g_name= #{g_name}))
+    </insert>
+
+    <delete id="deleteGoodsWords">
+        delete from words WHERE w_content= #{w_content} and g_no=(select goods.g_no from goods,user where user.u_email= #{u_email} and user.c_no=goods.c_no and goods.g_name= #{g_name})
+    </delete>
+
+    <select id="searchGoodsWords" resultType="com.type.bean.GoodsWords">
+        SELECT words.* FROM words,user,goods
+        where IF (#{w_no} != 0, w_no =#{w_no}, 1 = 1) and
+            IF (#{w_content} is not null, w_content like CONCAT('%',#{w_content},'%'),1 = 1) and
+            IF (#{w_createDate} is not null, w_createDate =#{w_createDate},1 = 1) and
+            IF (#{w_checkState} != 0,  w_checkState =#{w_checkState},1 = 1) and
+            u_email= #{u_email} and user.c_no=goods.c_no and goods.g_price > #{min_price} and  #{max_price} > goods.g_price and goods.g_name > #{g_name} and goods.g_no=words.g_no
+    </select>
+</mapper>

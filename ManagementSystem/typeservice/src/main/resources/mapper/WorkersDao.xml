@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.type.dao.WorkersDao">
+    <select id="checkEmailNum" resultType="Integer">
+        SELECT count(*) FROM user
+        WHERE u_email= #{u_email}
+    </select>
+
+    <select id="showWorkers" resultType="com.type.bean.User">
+        SELECT u_email, u_identity ,u_name,u_gender,u_age FROM user
+        where c_no=(select c_no from user where u_email=#{u_email}) and u_identity>1
+    </select>
+
+
+    <select id="checkWorkersNum" resultType="Integer">
+        SELECT count(*) FROM user
+        WHERE u_email=#{employee_email}
+    </select>
+
+    <insert id="addWorkers">
+        insert into user(u_email, u_password, u_identity ,u_name,u_gender,u_age,c_no)
+            value (#{employee_email},"12345",#{u_identity},#{u_name},#{u_gender},#{u_age},(select u.c_no from user u where u_email=#{u_email}))
+    </insert>
+
+    <delete id="deleteWorkers">
+        delete from user WHERE u_email=#{employee_email} and c_no IN
+        (SELECT c_no FROM (SELECT c_no FROM user WHERE u_email=#{u_email}) u);
+    </delete>
+
+
+    <select id="searchWorkers" resultType="com.type.bean.User">
+        SELECT u_email, u_identity ,u_name,u_gender,u_age FROM user
+        where IF (#{u_name} is not null, u_name like CONCAT('%',#{u_name},'%'), 1 = 1) and
+            IF (#{u_identity} != 0, u_identity =#{u_identity},1 = 1) and
+            IF (#{u_gender} != 0,  u_gender =#{u_gender},1 = 1) and
+        c_no=(select c_no from user where u_email=#{u_email})
+
+    </select>
+
+</mapper>

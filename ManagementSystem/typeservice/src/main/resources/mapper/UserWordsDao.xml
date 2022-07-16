@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.type.dao.UserWordsDao">
+    <select id="checkEmailNum" resultType="Integer">
+        SELECT count(*) FROM user
+        WHERE u_email= #{u_email}
+    </select>
+    <select id="showUserWords" resultType="com.type.bean.UserWords">
+        SELECT w.w_no, w.w_content,w.w_createDate,w.u_email FROM user_words w
+        where u_email= #{u_email}
+    </select>
+
+    <select id="checkUserWordsNum" resultType="Integer">
+        SELECT count(*) FROM user_words
+        WHERE w_content= #{w_content} and u_email=#{u_email}
+    </select>
+
+    <insert id="addUserWords">
+        insert into user_words(w_content, w_createDate ,u_email)
+            value (#{w_content},#{w_createDate},#{u_email})
+    </insert>
+
+    <delete id="deleteUserWords">
+        delete from user_words where w_content= #{w_content} and
+        u_email=#{u_email}
+    </delete>
+
+    <select id="searchUserWords" resultType="com.type.bean.UserWords">
+        SELECT user_words.* FROM user_words
+        where IF (#{w_no} != 0, w_no =#{w_no}, 1 = 1) and
+            IF (#{w_content} is not null, w_content like CONCAT('%',#{w_content},'%'),1 = 1) and
+            IF (#{w_createDate} is not null, w_createDate =#{w_createDate},1 = 1) and
+              u_email= #{u_email}
+    </select>
+</mapper>

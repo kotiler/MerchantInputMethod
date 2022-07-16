@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>商品</title>
+</head>
+<body style="background-color:#EFF0F4;">
+
+
+<div>
+  <img src="img.png" ;width="50px" ; height="50px" ; style="position:absolute; left:60px; top:10px; ">
+</div>
+
+<!..顶部白色色块..>
+<div style="background-color: rgba(253, 253, 253, 100); width:1260px; height:50px;position:absolute; left:213px; top:10px;">
+  <img src="img_1.png" ;width="30px" ; height="30px" ; style="position:absolute; left:1220px; top:10px; ">
+  <p style="width: 100px;height: 20px;color: rgba(56, 58, 64, 100);font-size: 15px;position:absolute; left:10px; top:0px; ">首页 / 商品 / </p>
+  <p style="width: 100px;height: 20px;color: gray;font-size: 15px;position:absolute; left:101px; top:0px; ">商品列表</p>
+
+  <!..退出登录超链接..>
+  <a href="Login.html"
+     style="text-decoration: none;width:60px;height: 50px;line-height: 20px;color: blue;font-size: 15px;position:absolute; left:1155px;top:15px;" >退出登录</a>
+</div>
+
+<!..搜索框..>
+<div id="menu" style="width:1252px;height:55px;float:left;margin-top: 59px;margin-bottom: 0px; margin-left: 212px; background-color: white">
+
+
+    <img src="img_2.jpg" style="width:32px ; height:32px;margin-left: 2px;" >
+
+    <font  style="width: 50px;height: 20px;color: gray;font-size: 15px;margin-left: 30px;margin-top: 5px">商品名称:</font>
+    <input id="text1" type="text" placeholder="输入名称关键字" style="width: 130px;height: 30px;color:
+                rgba(136, 136, 136, 100);font-size: 14px;text-align: left;margin-left:5px;"/>
+
+  <font style="width: 60px;height: 20px;color: gray;font-size: 15px;margin-left: 75px;margin-right: 5px;">审核状态:</font>
+  <select  id="text3" style="width: 80px;height: 35px;color: rgba(136, 136, 136, 100);font-size: 14px;text-align: left;">
+    <option >未知</option>
+    <option >未审核</option>
+    <option >已审核</option>
+  </select>
+
+
+    <font style="width: 50px;height: 20px;color: gray;font-size: 15px;margin-left: 75px;margin-right: 5px">价格区间:</font>
+    <input id="textmin"  type="text" placeholder="输入最低价格"style="width: 100px;height: 30px;color:
+                rgba(136, 136, 136, 100);font-size: 14px;text-align: left;"/>
+    <font style="width: 50px;height: 20px;color: gray;font-size: 15px;">元<big style="margin-left: 10px;margin-top: 10px;font-size: 25px;">~</big></font>
+    <input id="textmax"  type="text" placeholder="输入最高价格"style="width: 100px;height: 30px;color:
+                rgba(136, 136, 136, 100);font-size: 14px;text-align: left;margin-left: 10px;"/>
+    <font style="width: 50px;height: 20px;color: gray;font-size: 15px;margin-right: 20px">元</font>
+
+  <button   style="margin-left: 80px;width: 60px;height: 30px;border-radius: 4px;color: black;background-color:white;font-size: 15px;border: 1px solid rgba(187, 187, 187, 100);" onclick="reset()">重置</button>
+  <button   style="margin-left: 6px;width: 100px;height: 30px;border-radius: 4px;color: white;background-color:#3C6AEC ;font-size: 15px;border: 1px solid rgba(187, 187, 187, 100);" onclick="found()" >查询结果</button>
+
+</div>
+
+
+
+<!..左边黑色色块..>
+<div style="background-color:#2D3A4B; width:153px; height:700px;position:absolute; left:60px; top:60px;">
+
+
+  <summary style="color:white;left:10px; top:10px;padding-left:55px;padding-top:25px;" ><a style=" font-size:15px; color:white; text-decoration:none;" href="huashu1.html">话术</a></summary>
+  <summary style="color:white;left:10px; top:10px;padding-left:55px;padding-top:25px;" ><a id="l2" style="font-size: 15px;color: white;text-decoration: none;" href="#">商品</a></summary>
+  <summary style="color:white;left:10px; top:10px;padding-left:55px;padding-top:25px;" ><a style="font-size: 15px;color: white;text-decoration: none;" href="yuangong1.html">员工</a></summary>
+
+</div>
+
+<!..数据列表..>
+<div style="background-color:white; width:1252px; height:60px;position:absolute; left:220px;top: 129px">
+  <img src="img_5.png" ;width="25px" ; height="25px" ; style="position:absolute; left:0px; top:18px; ">
+  <button   style="width: 100px;height: 30px;border-radius: 4px;color: black;background-color:white;font-size: 15px;border: 1px solid rgba(187, 187, 187, 100);position:absolute; left:1140px; top:15px;" onclick="toother()">添加商品</button>
+</div>
+
+<!..表格..>
+<table id="table1" style="position:absolute; left:218px; top:194px;">
+  <tr style="background-color: white">
+    <td style="width: 69px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">编号</td>
+    <td style="width: 150px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">商品图片</td>
+    <td style="width: 150px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">商品名称</td>
+    <td style="width: 340px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">商品简介</td>
+    <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">商品价格</td>
+    <td style="width: 150px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">添加日期</td>
+    <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">审核状态</td>
+    <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">操作</td>
+  </tr>
+  <tr style="background-color: white">
+    <td style="width: 69px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+    <td style="width: 150px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"><img id="img1" src=""  style="opacity: 0;"  height="70" width="100"></td>
+    <td style="width: 150px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align:left;"></td>
+    <td style="width: 340px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align:left;"></td>
+    <td style="width: 122px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+    <td style="width: 150px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+    <td style="width: 122px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">
+      <p id="p1" style="width: 70px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">已审核</p>
+      <button id="b1" onclick="shenhe1()" style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);">待审核</button>
+
+    </td>
+    <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(136, 136, 136, 100);font-size: 18px;text-align: center;">
+      <button id="see1" style="width: 70px;height: 30px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(60, 106, 236, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="ss1()">话术</button>
+      <br>
+      <button id="1" style="margin-top:10px;width: 70px;height: 30px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="dd1()">删除</button>
+    </td>
+  </tr>
+  <tr style="background-color: white">
+    <td style="width: 69px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+    <td style="width: 150px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"><img id="img2" src="" style="opacity: 0; " height="70" width="100"></td>
+    <td style="width: 150px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+    <td style="width: 340px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+    <td style="width: 122px;height:82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+    <td style="width: 150px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+    <td style="width: 122px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">
+      <p id="p2" style="width: 70px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">已审核</p>
+      <button id="b2" onclick="shenhe2()" style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);">待审核</button>
+
+    </td>
+
+    <td style="width: 122px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(136, 136, 136, 100);font-size: 16px;text-align: center;">
+      <button id="see2" style="width: 70px;height: 30px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(60, 106, 236, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="ss2()">话术</button>
+      <br>
+      <button id="2" style="margin-top:10px;width: 70px;height: 30px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="dd2()">删除</button>
+    </td>
+  </tr>
+
+  <tr style="background-color: white">
+    <td style="width: 69px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+    <td style="width: 150px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"><img id="img3" src="" style="opacity: 0;" height="70" width="100"></td>
+    <td style="width: 150px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+    <td style="width: 340px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+    <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+    <td style="width: 150px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+    <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">
+      <p id="p3" style="width: 70px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">已审核</p>
+      <button id="b3" onclick="shenhe3()" style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);">待审核</button>
+
+    </td>
+    <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(136, 136, 136, 100);font-size: 16px;text-align: center;">
+      <button id="see3" style="width: 70px;height: 30px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(60, 106, 236, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="ss3()">话术</button>
+      <br>
+      <button id="3" style="margin-top:10px;width: 70px;height: 30px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="dd3()">删除</button>
+    </td>
+  </tr>
+  <tr style="background-color: white">
+  <td style="width: 69px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+  <td style="width: 150px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"><img id="img4" src="" style="opacity: 0;" height="70" width="100"></td>
+  <td style="width: 150px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+  <td style="width: 340px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+  <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+  <td style="width: 150px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+  <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">
+    <p id="p4" style="width: 70px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">已审核</p>
+    <button id="b4" onclick="shenhe4()" style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);">待审核</button>
+
+  </td>
+  <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(136, 136, 136, 100);font-size: 16px;text-align: center;">
+    <button id="see4" style="width: 70px;height: 30px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(60, 106, 236, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="ss4()">话术</button>
+    <br>
+    <button id="4" style="margin-top:10px;width: 70px;height: 30px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="dd4()">删除</button>
+  </td>
+</tr>
+  <tr style="background-color: white">
+    <td style="width: 69px;height: 82px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+    <td style="width: 150px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"><img id="img5" src="" style="opacity: 0;" height="70" width="100"></td>
+    <td style="width: 150px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+    <td style="width: 340px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+    <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+    <td style="width: 150px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+    <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">
+      <p id="p5" style="width: 70px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">已审核</p>
+      <button id="b5" onclick="shenhe5()" style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);">待审核</button>
+    </td>
+    <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(136, 136, 136, 100);font-size: 16px;text-align: center;">
+      <button id="see5" style="width: 70px;height: 30px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(60, 106, 236, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="ss5()">话术</button>
+      <br>
+      <button id="5" style="margin-top:10px;width: 70px;height: 30px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="dd5()">删除</button>
+    </td>
+  </tr>
+</table>
+<button style="width: 60px;height: 30px;border-radius: 1px;background-color: rgba(255, 255, 255, 100);font-size: 15px;text-align: center;border: 1px solid rgba(232, 232, 232, 100);position:absolute; left:1290px; top:683px;" onclick="up()">上一页</button>
+<button style="width: 60px;height: 30px;border-radius: 1px;background-color: rgba(255, 255, 255, 100);font-size: 15px;text-align: center;border: 1px solid rgba(232, 232, 232, 100);position:absolute; left:1410px; top:683px;" onclick="down()">下一页</button>
+<button style="width: 60px;height: 30px;border-radius: 1px;background-color: rgba(255, 255, 255, 100);font-size: 15px;text-align: center;border: 1px solid rgba(232, 232, 232, 100);position:absolute; left:1220px; top:683px;" onclick="reshow()">刷新</button>
+<p id="page2" style="width: 60px;height: 30px;border:none;font-size: 15px;text-align: center;position:absolute; left:1350px; top:673px;">123</p>
+<p id="page1" style="width: 60px;height: 30px;border:none;font-size: 15px;text-align: center;position:absolute; left:1150px; top:673px;">1231</p>
+
+
+
+<!..添加页面..>
+<div id="addshangpin" style="display: none">
+  <div style="opacity:0.6;background-color: rgba(239, 240, 244, 100);color: rgba(16, 16, 16, 100);width:1260px; height:700px;position:absolute; left:213px; top:65px;">
+  </div>
+  <div style="height:500px;width:600px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 100);font-size: 14px;position:absolute; left:540px; top:110px;">
+    <p style="color: rgba(16, 16, 16, 100);font-size: 18px;margin-left:270px;margin-top:5px; ">添加商品</p>
+    <input id="sname"  type="text" placeholder="请输入商品名称" style="width: 200px;color:rgba(136, 136, 136, 100);font-size: 15px;text-align: left;margin-left:230px;font-family:微软雅黑 "/>
+    <input id="sdate"  type="date"   style="width:204px;margin-left:230px;margin-top:25px;color:rgba(136, 136, 136, 100);font-size: 15px;text-align: left;font-family:微软雅黑 "/>
+    <textarea id="stext"  placeholder="请输入商品的简要介绍"  style="width: 200px;height:50px;color:rgba(136, 136, 136, 100);font-size: 15px;text-align: left;margin-left:230px;margin-top: 25px;font-family:微软雅黑 "></textarea>
+    <input id="sprice" type="text"  placeholder="输入商品价格"  style="width: 200px;color:rgba(136, 136, 136, 100);font-size: 15px;text-align: left;margin-left:230px;margin-top: 25px;font-family:微软雅黑 "/>
+
+    <p style="color: rgba(16, 16, 16, 100);font-size: 16px;position: absolute; left: 150px;top:30px;">商品名称:</p>
+    <p style="color: rgba(16, 16, 16, 100);font-size: 16px;position: absolute; left: 150px;top:80px; ">上架时间:</p>
+    <p style="color: rgba(16, 16, 16, 100);font-size: 16px;position: absolute; left: 150px;top:130px;">商品简介:</p>
+    <p style="color: rgba(16, 16, 16, 100);font-size: 16px;position: absolute; left: 150px;top:215px;">商品价格:</p>
+    <p style="color: rgba(16, 16, 16, 100);font-size: 16px;position: absolute; left: 150px;top:265px;">商品图片:</p>
+    <img id="upimg" src="img_4.png" width="100" height="100" style="position: absolute; left:230px;top:280px;" onclick="imgclick()">
+    <button   style="position:absolute;left:235px;top:430px;width: 60px;height: 30px;border-radius: 4px;color: white;background-color:#3C6AEC ;font-size: 15px;border: 1px solid rgba(187, 187, 187, 100);" onclick="addsp()" >添加</button>
+    <button   style="position:absolute;left:335px;top:430px;width: 60px;height: 30px;border-radius: 4px;color: black;background-color:white;font-size: 15px;border: 1px solid rgba(187, 187, 187, 100);" onclick="addclose()">取消</button>
+    <input accept="image/*" name="upimage" id="upload_file" type="file" style="display: none">
+  </div>
+</div>
+
+<!..删除提示..>
+<div id="deleteshangpin" style="display: none">
+  <div style="opacity:0.6;background-color: rgba(239, 240, 244, 100);color: rgba(16, 16, 16, 100);width:1260px; height:700px;position:absolute; left:213px; top:65px;">
+  </div>
+
+  <div style="height:150px;width:350px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 100);font-size: 14px;position:absolute; left:620px; top:240px;">
+    <p style="font-size: 18px;margin-top: 30px;margin-left: 70px;">确定删除这条商品信息吗？</p>
+    <button   style="margin-left:70px;margin-top:15px;width: 60px;height: 30px;border-radius: 4px;color: white;background-color:#3C6AEC ;font-size: 15px;border: 1px solid rgba(187, 187, 187, 100);" onclick="suredelete()" >确定</button>
+    <button   style="margin-left:80px;margin-top:15px;width: 60px;height: 30px;border-radius: 4px;color: black;background-color:white;font-size: 15px;border: 1px solid rgba(187, 187, 187, 100);" onclick="quxiao()">取消</button>
+
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+<script type="text/javascript"></script>
+<script>
+  var snum=5;//表格行数
+  document.getElementById("l2").style.color="#409EFF";
+  clear();
+  //var useremail="123456789@qq.com";
+  var useremail=getCookie("user_email");
+  //<summary style="color:white;left:10px; top:10px;padding-left:40px;padding-top:25px;" ><a style="font-size: 15px;color: white;text-decoration: none;" href="person2.html">个人中心</a></summary>
+  //获取数据
+  var data2;
+  var data={"u_email":useremail};
+  var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+  httpRequest.open("POST", "http://localhost:8088/goods/showGoods",true);  //调用AddDataToServer
+  httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+  httpRequest.send(JSON.stringify(data)); //设置为发送给服务器数据
+  //回调函数，获取返回数据
+  httpRequest.onreadystatechange = function() {
+    if (httpRequest.readyState == 4) {
+      //根据服务器的响应内容格式处理响应结果
+      if(httpRequest.getResponseHeader('content-type')==='application/json'){
+        var result = JSON.parse(httpRequest.responseText);
+        if(result[0]){
+          data2=result;
+          showin();
+        }
+      }
+    }
+  }
+  var dsp;
+  function quxiao(){
+    document.getElementById("deleteshangpin").style.display="none";
+  }
+  function ifdelete(){
+    document.getElementById("deleteshangpin").style.display="block";
+  }
+  function suredelete(){
+    gotod();
+  }
+  function imgclick() {//图片启动input file点击事件
+    document.getElementById('upload_file').click();
+
+  }
+  var temp64="";
+  document.getElementById("upload_file").onchange = function () {
+    var str=gen_base64();
+  };
+  //图片转为base64编码字符串
+  function gen_base64() {
+    var file = document.getElementById('upload_file').files[0];
+    var r = new FileReader();  //本地预览
+    r.readAsDataURL(file);    //Base64
+    r.onload = function(){
+      temp64=r.result;
+      var img = document.getElementById("upimg");
+      img.setAttribute("src",r.result);
+      console.info(temp64);
+      return r.result;
+    }
+  }
+
+
+
+
+  function toother() {
+    document.getElementById("addshangpin").style.display="block";
+  }
+  function addclose() {
+    clearadd();
+    document.getElementById("addshangpin").style.display="none";
+  }
+  function addsp() {//添加商品
+    var sname=document.getElementById("sname").value;
+    var sdate=document.getElementById("sdate").value;
+    var stext=document.getElementById("stext").value;
+    var sprice=document.getElementById("sprice").value;
+    var updata={"u_email":useremail,"g_picture":temp64,"g_price":sprice,"g_description":stext,"g_name":sname,"g_addDate":sdate};
+    //alert(JSON.stringify(updata));
+    var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+    httpRequest.open("POST", "http://localhost:8088/goods/addGoods",true);  //调用AddDataToServer
+    httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+    httpRequest.send(JSON.stringify(updata)); //设置为发送给服务器数据
+//回调函数，获取返回数据
+    httpRequest.onreadystatechange = function() {
+      if (httpRequest.readyState == 4) {
+        //根据服务器的响应内容格式处理响应结果
+        if(httpRequest.getResponseHeader('content-type')==='application/json'){
+          var result = JSON.parse(httpRequest.responseText);
+          if(result["code"]===7007){
+            clearadd();
+            document.getElementById("addshangpin").style.display="none";
+            clear();
+            getd();
+          }
+          else{
+            alert("添加出错，商品可能已经存在");
+          }
+        }
+      }
+    }
+
+  }
+ function clearadd(){
+   document.getElementById("sname").value="";
+   document.getElementById("sdate").value="";
+   document.getElementById("stext").value="";
+   document.getElementById("sprice").value="";
+   var img = document.getElementById("upimg");
+   img.setAttribute("src","img_4.png");
+ }
+
+  function reset() {
+    document.getElementById("text1").value="";
+    document.getElementById("textmin").value="";document.getElementById("textmax").value="";
+    document.getElementById("text3").value="已审核";
+  }
+  function chang(a){
+    if(a===""){
+      return null;
+    }
+    else{
+      return a;
+    }
+  }
+  function found(){
+    var t1=chang(document.getElementById("text1").value);
+    var t3=document.getElementById("text3").value;
+    var tmin=chang(document.getElementById("textmin").value);
+    var tmax=chang(document.getElementById("textmax").value);
+    var t={"未审核":2,"已审核":1,"未知":null};
+    t3=t[t3];
+    var tdata={"u_email":useremail,"g_name":t1,"g_description":null,"g_checkState":t3,"g_addDate":null,"min_price":tmin,"max_price":tmax};
+    var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+    httpRequest.open("POST", "http://localhost:8088/goods/searchGoods",true);  //调用AddDataToServer
+    httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+    httpRequest.send(JSON.stringify(tdata)); //设置为发送给服务器数据
+    //回调函数，获取返回数据
+    httpRequest.onreadystatechange = function() {
+      if (httpRequest.readyState == 4) {
+        //根据服务器的响应内容格式处理响应结果
+        if(httpRequest.getResponseHeader('content-type')==='application/json'){
+          var result = JSON.parse(httpRequest.responseText);
+          if(result[0]){
+            clear();
+            index = 1;
+            data2=result;
+            showin();
+          }
+          else{
+            alert("没有相关数据");
+          }
+        }
+      }
+    }
+
+
+
+
+  }
+
+  function getd(){//更新
+    var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+    httpRequest.open("POST", "http://localhost:8088/goods/showGoods",true);  //调用AddDataToServer
+    httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+    httpRequest.send(JSON.stringify(data)); //设置为发送给服务器数据
+    //回调函数，获取返回数据
+    httpRequest.onreadystatechange = function() {
+      if (httpRequest.readyState == 4) {
+        //根据服务器的响应内容格式处理响应结果
+        if(httpRequest.getResponseHeader('content-type')==='application/json'){
+          var result = JSON.parse(httpRequest.responseText);
+          if(result[0]){
+            data2=result;
+            showin();
+          }
+        }
+      }
+    }
+  }
+
+  var index=1;
+  //解析cookies的值
+  function getCookie(cookie_name) {
+    var allcookies = document.cookie;
+
+    var cookie_pos = allcookies.indexOf(cookie_name);
+
+    if (cookie_pos !== -1) {
+      cookie_pos = cookie_pos + cookie_name.length + 1;
+      var cookie_end = allcookies.indexOf(";", cookie_pos);
+      if (cookie_end === -1) {
+        cookie_end = allcookies.length;
+      }
+      var value = unescape(allcookies.substring(cookie_pos, cookie_end));
+    }
+    return value;
+  }
+
+
+
+  function reshow(){
+    index=1;
+    showin();
+  }
+
+  //展示数据
+  function showin(){
+    document.getElementById("page1").innerHTML="共"+data2.length+"条";
+    var manylen=parseInt(data2.length/snum);
+    if( data2.length%snum >0){
+      manylen=manylen+1;
+    }
+    document.getElementById("page2").innerHTML=index+"/"+manylen;
+    var tr = $("#table1 tr");//获取table中的tr
+    if(data2.length>=index*snum){
+      for(var i=1;i<=snum;i++){
+        var td = $(tr[i]).find("td");
+        $(td[0]).html((index-1)*snum+i);
+
+        var img = document.getElementById("img"+i);
+        img.setAttribute("src",data2[(index-1)*snum+i-1]["g_picture"]);
+        img.style.opacity=1;
+
+        $(td[2]).html(data2[(index-1)*snum+i-1]["g_name"]);
+        $(td[3]).html(data2[(index-1)*snum+i-1]["g_description"]);
+        $(td[4]).html("¥"+data2[(index-1)*snum+i-1]["g_price"]);
+        $(td[5]).html(data2[(index-1)*snum+i-1]["g_addDate"]);
+        document.getElementById("see"+i).style.display="block";
+        document.getElementById(i).style.display="block";
+        document.getElementById("see"+i).style="width: 70px;height: 30px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(60, 106, 236, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;"
+        document.getElementById(i).style="width: 70px;height: 35px;border: 1px solid rgba(187, 187, 187, 100);border-radius: 4px;background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;";
+
+        if(data2[(index-1)*snum+i-1]["g_checkState"]===1)
+        {
+          document.getElementById("p"+i).style.display="block";
+          document.getElementById("p"+i).style="width:122px;height: 25px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;";
+        }
+        else{
+          document.getElementById("b"+i).style.display="block";
+          document.getElementById("b"+i).style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);";
+        }
+
+      }
+    }
+    else{
+      for(var i=1;i<=data2.length%snum;i++){
+        var td = $(tr[i]).find("td");
+        $(td[0]).html((index-1)*snum+i);
+
+        var img = document.getElementById("img"+i);
+        img.setAttribute("src",data2[(index-1)*snum+i-1]["g_picture"]);
+        img.style.opacity=1;
+
+        $(td[2]).html(data2[(index-1)*snum+i-1]["g_name"]);
+        $(td[3]).html(data2[(index-1)*snum+i-1]["g_description"]);
+        $(td[4]).html("¥"+data2[(index-1)*snum+i-1]["g_price"]);
+        $(td[5]).html(data2[(index-1)*snum+i-1]["g_addDate"]);
+
+        document.getElementById("see"+i).style.display="block";
+        document.getElementById(i).style.display="block";
+        document.getElementById("see"+i).style="width: 70px;height: 30px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(60, 106, 236, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;"
+        document.getElementById(i).style="width: 70px;height: 35px;border: 1px solid rgba(187, 187, 187, 100);border-radius: 4px;background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;";
+
+        if(data2[(index-1)*snum+i-1]["g_checkState"]===1)
+        {
+          document.getElementById("p"+i).style.display="block";
+          document.getElementById("p"+i).style="width:122px;height: 25px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;";
+        }
+        else{
+          document.getElementById("b"+i).style.display="block";
+          document.getElementById("b"+i).style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);";
+        }
+
+      }
+    }
+
+  }
+  //清空数据
+  function clear(){
+    var tr = $("#table1 tr");
+    for(var i=1;i<=snum;i++){
+      var td = $(tr[i]).find("td");
+      $(td[0]).html("");
+      $(td[2]).html("");
+      $(td[3]).html("");
+      $(td[4]).html("");
+      $(td[5]).html("");
+      var img = document.getElementById("img"+i);
+      img.setAttribute("src","");
+      img.style.opacity=0;
+      document.getElementById("p"+i).style.display="none";
+      document.getElementById("b"+i).style.display="none";
+      document.getElementById(i).style.display="none";
+      document.getElementById("see"+i).style.display="none";
+    }
+  }
+  function down(){
+    if(index*snum<data2.length){
+      index=index+1;
+      clear();
+      showin();
+    }
+  }
+  function up(){
+    if(index>1){
+      index=index-1;
+      clear();
+      showin();
+    }
+  }
+
+
+
+
+//删除商品
+  function dd1(){
+    var tr = $("#table1 tr");
+    var td = $(tr[1]).find("td");
+    dsp=$(td[2]).eq(0).text();
+    ifdelete();
+
+  }
+  function dd2(){
+    var tr = $("#table1 tr");
+    var td = $(tr[2]).find("td");
+    dsp=$(td[2]).eq(0).text();ifdelete();
+  }
+  function dd3(){
+    var tr = $("#table1 tr");
+    var td = $(tr[3]).find("td");
+    dsp=$(td[2]).eq(0).text();ifdelete();
+  }
+  function dd4(){
+    var tr = $("#table1 tr");
+    var td = $(tr[4]).find("td");
+    dsp=$(td[2]).eq(0).text();ifdelete();
+  }
+  function dd5(){
+    var tr = $("#table1 tr");
+    var td = $(tr[5]).find("td");
+    dsp=$(td[2]).eq(0).text();ifdelete();
+  }
+  function gotod(){
+    var a=dsp;
+    var data={"u_email":useremail,"g_name":a};
+    var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+    httpRequest.open("POST", "http://localhost:8088/goods/deleteGoods",true);  //调用AddDataToServer
+    httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+    httpRequest.send(JSON.stringify(data)); //设置为发送给服务器数据
+    //回调函数，获取返回数据
+    httpRequest.onreadystatechange = function() {
+      if (httpRequest.readyState == 4) {
+        //根据服务器的响应内容格式处理响应结果
+        if(httpRequest.getResponseHeader('content-type')==='application/json'){
+          var result = JSON.parse(httpRequest.responseText);
+          if(result["code"]===8000){
+            index=1;
+            clear();
+            getd();
+            quxiao();
+            //alert("删除成功");
+          }
+          else{
+            alert("删除失败");
+          }
+        }
+      }
+    }
+  }
+  //查看商品话术
+  function ss1(){
+    var tr = $("#table1 tr");
+    var td = $(tr[1]).find("td");
+    gotos($(td[2]).eq(0).text());
+
+  }
+  function ss2(){
+    var tr = $("#table1 tr");
+    var td = $(tr[2]).find("td");
+    gotos($(td[2]).eq(0).text());
+  }
+  function ss3(){
+    var tr = $("#table1 tr");
+    var td = $(tr[3]).find("td");
+    gotos($(td[2]).eq(0).text());
+  }
+  function ss4(){
+    var tr = $("#table1 tr");
+    var td = $(tr[4]).find("td");
+    gotos($(td[2]).eq(0).text());
+  }
+  function ss5(){
+    var tr = $("#table1 tr");
+    var td = $(tr[5]).find("td");
+    gotos($(td[2]).eq(0).text());
+  }
+  function gotos(a){
+    document.cookie ="gname" + "=" +a+ ";path=/";
+    window.location.href="showGwords.html";
+  }
+
+
+  //审核
+  function shenhe1(){
+    var tr = $("#table1 tr");
+    var td = $(tr[1]).find("td");
+    gotosh($(td[2]).eq(0).text(),1);
+  }
+  function shenhe2(){
+    var tr = $("#table1 tr");
+    var td = $(tr[2]).find("td");
+    gotosh($(td[2]).eq(0).text(),2);
+  }
+  function shenhe3(){
+    var tr = $("#table1 tr");
+    var td = $(tr[3]).find("td");
+    gotosh($(td[2]).eq(0).text(),3);
+  }
+  function shenhe4(){
+    var tr = $("#table1 tr");
+    var td = $(tr[4]).find("td");
+    gotosh($(td[2]).eq(0).text(),4);
+  }
+  function shenhe5(){
+    var tr = $("#table1 tr");
+    var td = $(tr[5]).find("td");
+    gotosh($(td[2]).eq(0).text(),5);
+  }
+  function gotosh(a,b){
+    var data={"u_email":useremail,"g_name":a};
+    var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+    httpRequest.open("POST", "http://localhost:8088/goods/checkGoods",true);  //调用AddDataToServer
+    httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+    httpRequest.send(JSON.stringify(data)); //设置为发送给服务器数据
+    //回调函数，获取返回数据
+    httpRequest.onreadystatechange = function() {
+      if (httpRequest.readyState == 4) {
+        //根据服务器的响应内容格式处理响应结果
+        if(httpRequest.getResponseHeader('content-type')==='application/json'){
+          var result = JSON.parse(httpRequest.responseText);
+          if(result["code"]===5001){
+            document.getElementById("b"+b).style.display="none";
+            document.getElementById("p"+b).style.display="block";
+            document.getElementById("p"+b).style="width:122px;height: 25px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align:center;";
+            getdata();
+          }
+          else{
+            alert("审核失败");
+          }
+        }
+      }
+    }
+  }
+  function getdata(){//更新
+    var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+    httpRequest.open("POST", "http://localhost:8088/goods/showGoods",true);  //调用AddDataToServer
+    httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+    httpRequest.send(JSON.stringify(data)); //设置为发送给服务器数据
+    //回调函数，获取返回数据
+    httpRequest.onreadystatechange = function() {
+      if (httpRequest.readyState == 4) {
+        //根据服务器的响应内容格式处理响应结果
+        if(httpRequest.getResponseHeader('content-type')==='application/json'){
+          var result = JSON.parse(httpRequest.responseText);
+          if(result[0]){
+            data2=result;
+          }
+        }
+      }
+    }
+  }
+</script>
+</html>

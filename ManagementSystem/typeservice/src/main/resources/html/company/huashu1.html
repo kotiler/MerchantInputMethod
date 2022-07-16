@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>话术</title>
+</head>
+<body style="background-color:#EFF0F4;">
+<div>
+    <img src="img.png" ;width="50px" ; height="50px" ; style="position:absolute; left:60px; top:10px; ">
+</div>
+
+<!..顶部白色色块..>
+<div style="background-color: rgba(253, 253, 253, 100); width:1260px; height:50px;position:absolute; left:213px; top:10px;">
+    <img src="img_1.png" ;width="30px" ; height="30px" ; style="position:absolute; left:1220px; top:10px; ">
+    <p style="width: 100px;height: 20px;color: rgba(56, 58, 64, 100);font-size: 15px;position:absolute; left:10px; top:0px; ">首页 / 话术 / </p>
+    <p style="width: 100px;height: 20px;color: gray;font-size: 15px;position:absolute; left:101px; top:0px; ">话术列表</p>
+
+    <!..退出登录超链接..>
+    <a href="Login.html"
+       style="text-decoration: none;width:60px;height: 50px;line-height: 20px;color: blue;font-size: 15px;position:absolute; left:1155px;top:15px;" >退出登录</a>
+</div>
+
+<!..搜索..>
+<div style="background-color:white; width:1252px; height:55px;position:absolute; left:220px; top:67px;">
+    <img src="img_2.jpg" ;width="32px" ; height="32px" ; style="position:absolute; left:5px; top:0px; ">
+    <!..文字..>
+    <p  style="width: 100px;height: 20px;color: gray;font-size: 15px;position:absolute; left:80px; top:0px; ">输入搜索:</p>
+    <p  style="width: 100px;height: 20px;color: gray;font-size: 15px;position:absolute; left:400px; top:0px; ">审核状态:</p>
+    <p  style="width: 100px;height: 20px;color: gray;font-size: 15px;position:absolute; left:730px; top:0px; ">上架日期:</p>
+
+    <!..输入框..>
+    <input type="text" placeholder="输入话术关键字" id="text1" style="position:absolute; left:150px; top:10px;width: 150px;height: 30px;color: rgba(136, 136, 136, 100);font-size: 14px;text-align: left;font-family:微软雅黑 "/>
+    <input type="date"  id="text3" style="position:absolute;left:800px; top:10px;width: 150px;height: 30px;color: rgba(136, 136, 136, 100);font-size: 14px;text-align: left;font-family:微软雅黑 "/>
+    <select  id="text4" style="position:absolute; left:470px; top:10px;width: 150px;height: 35px;color: rgba(136, 136, 136, 100);font-size: 14px;text-align: left;font-family:微软雅黑 ">
+        <option >未知</option>
+        <option >未审核</option>
+        <option >已审核</option>
+    </select>
+
+    <!..按钮..>
+    <button   style="width: 60px;height: 30px;border-radius: 4px;color: black;background-color:white;font-size: 15px;border: 1px solid rgba(187, 187, 187, 100);position:absolute; left:1067px; top:10px;" onclick="reset()">重置</button>
+    <button   style="width: 100px;height: 30px;border-radius: 4px;color: white;background-color:#3C6AEC ;font-size: 15px;border: 1px solid rgba(187, 187, 187, 100);position:absolute; left:1140px; top:10px;" onclick="found()" >查询结果</button>
+
+</div>
+
+<!..中间白色色块..>
+<div style="background-color:white; width:1252px; height:60px;position:absolute; left:220px; top:129px;">
+    <img src="img_5.png" ;width="25px" ; height="25px" ; style="position:absolute; left:0px; top:18px; ">
+    <button   style="width: 100px;height: 30px;border-radius: 4px;color: black;background-color:white;font-size: 15px;border: 1px solid rgba(187, 187, 187, 100);position:absolute; left:1140px; top:15px;" onclick="toother()">添加话术</button>
+</div>
+
+<!..左边黑色色块..>
+<div style="background-color:#2D3A4B; width:153px; height:700px;position:absolute; left:60px; top:60px;">
+    <summary style="color:white;left:10px; top:10px;padding-left:55px;padding-top:25px;" ><a id="l1" style=" font-size:15px; color:white; text-decoration:none;" href="#">话术</a></summary>
+    <summary style="color:white;left:10px; top:10px;padding-left:55px;padding-top:25px;" ><a style="font-size: 15px;color: white;text-decoration: none;" href="shangpin1.html">商品</a></summary>
+    <summary style="color:white;left:10px; top:10px;padding-left:55px;padding-top:25px;" ><a style="font-size: 15px;color: white;text-decoration: none;" href="yuangong1.html">员工</a></summary>
+</div>
+
+<table id="table1" style="position:absolute; left:218px; top:195px;">
+    <tr style="background-color: white">
+        <td style="width: 69px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">编号</td>
+        <td style="width: 776px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">内容</td>
+        <td style="width: 147px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">添加日期</td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">审核状态</td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">操作</td>
+    </tr>
+    <tr style="background-color: white">
+        <td style="width: 69px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 776px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align:left;"></td>
+        <td style="width: 147px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">
+            <p id="p1" style="width: 70px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">已审核</p>
+            <button id="b1" onclick="shenhe1()" style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);">待审核</button>
+
+        </td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(136, 136, 136, 100);font-size: 16px;text-align: center;">
+            <button id="1" style="width: 70px;height: 35px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="dd1()">删除</button>
+        </td>
+    </tr>
+    <tr style="background-color: white">
+        <td style="width: 69px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 776px;height:50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+        <td style="width: 147px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">
+            <p id="p2" style="width: 70px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">已审核</p>
+            <button id="b2" onclick="shenhe2()" style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);">待审核</button>
+
+        </td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(136, 136, 136, 100);font-size: 16px;text-align: center;">
+            <button id="2" style="width: 70px;height: 35px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="dd2()">删除</button>
+        </td>
+    </tr>
+    <tr style="background-color: white">
+        <td style="width: 69px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 776px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+        <td style="width: 147px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">
+            <p id="p3" style="width: 70px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">已审核</p>
+            <button id="b3" onclick="shenhe3()" style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);">待审核</button>
+
+        </td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(136, 136, 136, 100);font-size: 16px;text-align: center;">
+            <button id="3" style="width: 70px;height: 35px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="dd3()">删除</button>
+        </td>
+    </tr>
+    <tr style="background-color: white">
+        <td style="width: 69px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 776px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+        <td style="width: 147px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">
+            <p id="p4" style="width: 70px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">已审核</p>
+            <button id="b4" onclick="shenhe4()" style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);">待审核</button>
+
+        </td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(136, 136, 136, 100);font-size: 16px;text-align: center;">
+            <button id="4" style="width: 70px;height: 35px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="dd4()">删除</button>
+        </td>
+    </tr>
+    <tr  style="background-color: white">
+        <td style="width: 69px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 776px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+        <td style="width: 147px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">
+            <p id="p5" style="width: 70px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">已审核</p>
+            <button id="b5" onclick="shenhe5()" style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);">待审核</button>
+
+        </td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(136, 136, 136, 100);font-size: 16px;text-align: center;">
+            <button id="5" style="width: 70px;height: 35px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="dd5()">删除</button>
+        </td>
+    </tr>
+    <tr  style="background-color: white">
+        <td style="width: 69px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 776px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+        <td style="width: 147px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">
+            <p id="p6" style="width: 70px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">已审核</p>
+            <button id="b6" onclick="shenhe6()" style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);">待审核</button>
+
+        </td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(136, 136, 136, 100);font-size: 16px;text-align: center;">
+            <button id="6" style="width: 70px;height: 35px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="dd6()">删除</button>
+        </td>
+    </tr>
+    <tr  style="background-color: white">
+        <td style="width: 69px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 776px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+        <td style="width: 147px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">
+            <p id="p7" style="width: 70px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">已审核</p>
+            <button id="b7" onclick="shenhe7()" style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);">待审核</button>
+
+        </td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(136, 136, 136, 100);font-size: 16px;text-align: center;">
+            <button id="7" style="width: 70px;height: 35px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="dd7()">删除</button>
+        </td>
+    </tr>
+    <tr  style="background-color: white">
+        <td style="width: 69px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 776px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: left;"></td>
+        <td style="width: 147px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;"></td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">
+            <p id="p8" style="width: 70px;height: 30px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;">已审核</p>
+            <button id="b8" onclick="shenhe8()" style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);">待审核</button>
+
+        </td>
+        <td style="width: 122px;height: 50px;line-height: 20px;background-color: rgba(255, 255, 255, 100);color: rgba(136, 136, 136, 100);font-size: 16px;text-align: center;">
+            <button id="8" style="width: 70px;height: 35px;border-radius: 4px;border: 1px solid rgba(187, 187, 187, 100);background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;" onclick="dd8()">删除</button>
+        </td>
+    </tr>
+</table>
+<button style="width: 60px;height: 30px;border-radius: 1px;background-color: rgba(255, 255, 255, 100);font-size: 15px;text-align: center;border: 1px solid rgba(232, 232, 232, 100);position:absolute; left:1280px; top:684px;" onclick="up()">上一页</button>
+<button style="width: 60px;height: 30px;border-radius: 1px;background-color: rgba(255, 255, 255, 100);font-size: 15px;text-align: center;border: 1px solid rgba(232, 232, 232, 100);position:absolute; left:1410px; top:684px;" onclick="down()">下一页</button>
+<button style="width: 60px;height: 30px;border-radius: 1px;background-color: rgba(255, 255, 255, 100);font-size: 15px;text-align: center;border: 1px solid rgba(232, 232, 232, 100);position:absolute; left:1210px; top:684px;" onclick="reshow()">刷新</button>
+<p id="page2" style="width: 60px;height: 30px;border:none;font-size: 15px;text-align: center;position:absolute; left:1345px; top:675px;">123</p>
+<p id="page1" style="width: 60px;height: 30px;border:none;font-size: 15px;text-align: center;position:absolute; left:1140px; top:675px;">123</p>
+
+<!..添加页面..>
+<div id="addhuashu" style="display: none">
+    <div style="opacity:0.6;background-color: rgba(239, 240, 244, 100);color: rgba(16, 16, 16, 100);width:1260px; height:700px;position:absolute; left:213px; top:65px;">
+    </div>
+
+    <div style="height:280px;width:600px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 100);font-size: 14px;position:absolute; left:550px; top:220px;">
+        <p style="color: rgba(16, 16, 16, 100);font-size: 18px;margin-left:250px;margin-top:5px; ">添加话术</p>
+        <textarea  placeholder="请输入话术内容" id="newtext" style="margin-left:70px;margin-top:10px;width: 450px;height: 130px;color: black;font-size: 18px;text-align: left;"></textarea>
+        <button   style="margin-left:210px;margin-top:20px;width: 60px;height: 30px;border-radius: 4px;color: white;background-color:#3C6AEC ;font-size: 15px;border: 1px solid rgba(187, 187, 187, 100);" onclick="addhs()" >添加</button>
+        <button   style="margin-left:50px;margin-top:20px;width: 60px;height: 30px;border-radius: 4px;color: black;background-color:white;font-size: 15px;border: 1px solid rgba(187, 187, 187, 100);" onclick="addclose()">取消</button>
+    </div>
+</div>
+
+
+<!..删除提示..>
+<div id="deletehuashu" style="display: none">
+    <div style="opacity:0.6;background-color: rgba(239, 240, 244, 100);color: rgba(16, 16, 16, 100);width:1260px; height:700px;position:absolute; left:213px; top:65px;">
+    </div>
+
+    <div style="height:150px;width:350px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 100);font-size: 14px;position:absolute; left:620px; top:240px;">
+        <p style="font-size: 18px;margin-top: 30px;margin-left: 70px;">确定删除这条话术信息吗？</p>
+        <button   style="margin-left:70px;margin-top:15px;width: 60px;height: 30px;border-radius: 4px;color: white;background-color:#3C6AEC ;font-size: 15px;border: 1px solid rgba(187, 187, 187, 100);" onclick="suredelete()" >确定</button>
+        <button   style="margin-left:80px;margin-top:15px;width: 60px;height: 30px;border-radius: 4px;color: black;background-color:white;font-size: 15px;border: 1px solid rgba(187, 187, 187, 100);" onclick="quxiao()">取消</button>
+
+    </div>
+</div>
+
+
+
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+<script type="text/javascript"></script>
+<script>
+   // <summary style="color:white;left:10px; top:10px;padding-left:40px;padding-top:25px;" ><a style="font-size: 15px;color: white;text-decoration: none;" href="person2.html">个人中心</a></summary>
+    document.getElementById("l1").style.color="#409EFF";
+    var hnum=8;
+    clear();
+   function quxiao(){
+       document.getElementById("deletehuashu").style.display="none";
+   }
+    function addclose() {
+        document.getElementById("newtext").value="";
+        document.getElementById("addhuashu").style.display="none";
+    }
+    function toother(){
+        document.getElementById("addhuashu").style.display="block";
+    }
+    function addhs(){
+        var useremail=getCookie("user_email");
+        var ctext=document.getElementById("newtext").value;
+        var myDate = new Date();
+        var y=myDate.getFullYear();
+        var m=myDate.getMonth()+1;
+        var d=myDate.getDate();
+        var t=y+"-"+m+"-"+d;
+        var data={"u_email":useremail,"w_content":ctext,"w_createDate":t};
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        httpRequest.open("POST", "http://localhost:8088/words/addWords",true);  //调用AddDataToServer
+        httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+        httpRequest.send(JSON.stringify(data)); //设置为发送给服务器数据
+        //回调函数，获取返回数据
+        httpRequest.onreadystatechange = function() {
+            if (httpRequest.readyState == 4) {
+                //根据服务器的响应内容格式处理响应结果
+                if(httpRequest.getResponseHeader('content-type')==='application/json'){
+                    var result = JSON.parse(httpRequest.responseText);
+                    if(result["code"]== 7000){
+                        alert("添加成功");
+                        document.getElementById("addhuashu").style.display="none";
+                        document.getElementById("newtext").value="";
+                        clear();
+                        getd();
+                    }
+                    else{
+                        alert("添加失败");
+                    }
+                }
+            }
+        }
+    }
+
+
+    function reset(){
+        document.getElementById("text1").value="";
+        document.getElementById("text3").value="";
+        document.getElementById("text4").value="未知";
+    }
+
+    //获取数据
+    var data2;
+    //var useremail="123456789@qq.com";
+    var useremail=getCookie("user_email");
+    var data={"u_email":useremail};
+    var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+    httpRequest.open("POST", "http://localhost:8088/words/showWords",true);  //调用AddDataToServer
+    httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+    httpRequest.send(JSON.stringify(data)); //设置为发送给服务器数据
+    //回调函数，获取返回数据
+    httpRequest.onreadystatechange = function() {
+        if (httpRequest.readyState == 4) {
+            //根据服务器的响应内容格式处理响应结果
+            if(httpRequest.getResponseHeader('content-type')==='application/json'){
+                var result = JSON.parse(httpRequest.responseText);
+                if(result[0]){
+                    data2=result;
+                    showin();
+                }
+            }
+        }
+    }
+
+    function getd(){
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        httpRequest.open("POST", "http://localhost:8088/words/showWords",true);  //调用AddDataToServer
+        httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+        httpRequest.send(JSON.stringify(data)); //设置为发送给服务器数据
+        //回调函数，获取返回数据
+        httpRequest.onreadystatechange = function() {
+            if (httpRequest.readyState == 4) {
+                //根据服务器的响应内容格式处理响应结果
+                if(httpRequest.getResponseHeader('content-type')==='application/json'){
+                    var result = JSON.parse(httpRequest.responseText);
+                    if(result[0]){
+                        data2=result;
+                        index=1;
+                        showin();
+                    }
+                }
+            }
+        }
+    }
+
+    var index=1;
+    //解析cookies的值
+    function getCookie(cookie_name) {
+        var allcookies = document.cookie;
+
+        var cookie_pos = allcookies.indexOf(cookie_name);
+
+        if (cookie_pos !== -1) {
+            cookie_pos = cookie_pos + cookie_name.length + 1;
+            var cookie_end = allcookies.indexOf(";", cookie_pos);
+            if (cookie_end === -1) {
+                cookie_end = allcookies.length;
+            }
+            var value = unescape(allcookies.substring(cookie_pos, cookie_end));
+        }
+        return value;
+    }
+    function reshow(){
+        index=1;
+        showin();
+    }
+    //展示数据
+    function showin(){
+        document.getElementById("page1").innerHTML="共"+data2.length+"条";
+        var manylen=parseInt(data2.length/hnum);
+        if( data2.length%hnum >0){
+            manylen=manylen+1;
+        }
+        document.getElementById("page2").innerHTML=index+"/"+manylen;
+        var tr = $("#table1 tr");//获取table中的tr
+        if(data2.length>=index*hnum){
+            for(var i=1;i<=hnum;i++){
+                var td = $(tr[i]).find("td");
+                $(td[0]).html((index-1)*hnum+i);
+                $(td[1]).html(data2[(index-1)*hnum+i-1]["w_content"]);
+                $(td[2]).html(data2[(index-1)*hnum+i-1]["w_createDate"]);
+                document.getElementById(i).style.display="block";
+                document.getElementById(i).style="width: 70px;height: 35px;border: 1px solid rgba(187, 187, 187, 100);border-radius: 4px;background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align:center;";
+                if(data2[(index-1)*hnum+i-1]["w_checkState"]===1)
+                {
+                    document.getElementById("p"+i).style.display="block";
+                    document.getElementById("p"+i).style="width:122px;height: 15px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align:center;";
+                }
+                else{
+                    document.getElementById("b"+i).style.display="block";
+                    document.getElementById("b"+i).style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);";
+
+                }
+
+            }
+        }
+        else{
+            for(var i=1;i<=data2.length%hnum;i++){
+                var td = $(tr[i]).find("td");
+                $(td[0]).html((index-1)*hnum+i);
+                $(td[1]).html(data2[(index-1)*hnum+i-1]["w_content"]);
+                $(td[2]).html(data2[(index-1)*hnum+i-1]["w_createDate"]);
+                document.getElementById(i).style.display="block";
+                document.getElementById(i).style="width: 70px;height: 35px;border: 1px solid rgba(187, 187, 187, 100);border-radius: 4px;background-color: rgba(240, 76, 76, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;";
+                if(data2[(index-1)*hnum+i-1]["w_checkState"]===1)
+                {
+                    document.getElementById("p"+i).style.display="block";
+                    document.getElementById("p"+i).style="width: 122px;height: 15px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;";
+
+                }
+                else{
+                    document.getElementById("b"+i).style.display="block";
+                    document.getElementById("b"+i).style="width: 70px;height: 30px;border-radius: 4px;color: rgba(16, 16, 16, 100);font-size: 16px;text-align: center;font-family: Microsoft Yahei;border: 1px solid rgba(187, 187, 187, 100);";
+
+                }
+
+            }
+        }
+
+    }
+    //清空数据
+    function clear(){
+        var tr = $("#table1 tr");
+        for(var i=1;i<=hnum;i++){
+            var td = $(tr[i]).find("td");
+            $(td[0]).html("");
+            $(td[1]).html("");
+            $(td[2]).html("");
+            document.getElementById(i).style.display="none";
+            document.getElementById("p"+i).style.display="none";
+            document.getElementById("b"+i).style.display="none";
+        }
+    }
+    function down(){
+        if(index*hnum<data2.length){
+            index=index+1;
+            clear();
+            showin();
+        }
+    }
+    function up(){
+        if(index>1){
+            index=index-1;
+            clear();
+            showin();
+        }
+    }
+    var dtext;
+    function dd1(){
+        var tr = $("#table1 tr");
+        var td = $(tr[1]).find("td");
+        dtext=$(td[1]).eq(0).text();ifdelete();
+
+    }
+    function dd2(){
+        var tr = $("#table1 tr");
+        var td = $(tr[2]).find("td");dtext=$(td[1]).eq(0).text();ifdelete();
+    }
+    function dd3(){
+        var tr = $("#table1 tr");
+        var td = $(tr[3]).find("td");dtext=$(td[1]).eq(0).text();ifdelete();
+    }
+    function dd4(){
+        var tr = $("#table1 tr");
+        var td = $(tr[4]).find("td");dtext=$(td[1]).eq(0).text();ifdelete();
+    }
+    function dd5(){
+        var tr = $("#table1 tr");
+        var td = $(tr[5]).find("td");dtext=$(td[1]).eq(0).text();ifdelete();
+    }
+    function dd6(){
+        var tr = $("#table1 tr");
+        var td = $(tr[6]).find("td");dtext=$(td[1]).eq(0).text();ifdelete();
+    }
+    function dd7(){
+        var tr = $("#table1 tr");
+        var td = $(tr[7]).find("td");dtext=$(td[1]).eq(0).text();ifdelete();
+    }
+    function dd8(){
+        var tr = $("#table1 tr");
+        var td = $(tr[8]).find("td");dtext=$(td[1]).eq(0).text();ifdelete();
+    }
+    function gotod(){
+        var a=dtext;
+        var data={"u_email":useremail,"w_content":a};
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        httpRequest.open("POST", "http://localhost:8088/words/deleteWords",true);  //调用AddDataToServer
+        httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+        httpRequest.send(JSON.stringify(data)); //设置为发送给服务器数据
+        //回调函数，获取返回数据
+        httpRequest.onreadystatechange = function() {
+            if (httpRequest.readyState == 4) {
+                //根据服务器的响应内容格式处理响应结果
+                if(httpRequest.getResponseHeader('content-type')==='application/json'){
+                    var result = JSON.parse(httpRequest.responseText);
+                    if(result["code"]===8000){
+                        quxiao();
+                        clear();
+                        getd();
+                        //alert("删除成功");
+                    }
+                }
+            }
+        }
+    }
+    function chang(a){
+        if(a===""){
+            return null;
+        }
+        else{
+            return a;
+        }
+    }
+   function ifdelete(){
+        document.getElementById("deletehuashu").style.display="block";
+   }
+   function suredelete(){
+       gotod();
+   }
+    function found(){
+        var n1=chang(document.getElementById("text1").value);
+        var n3=chang(document.getElementById("text3").value);
+        var n4=chang(document.getElementById("text4").value);
+        var t={"未审核":2,"已审核":1,"未知":null};
+        n4=t[n4];
+        var cdata={"u_email":useremail,"w_no":null,"w_content":n1,"w_createDate":n3,"w_checkState":n4};
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        httpRequest.open("POST", "http://localhost:8088/words/searchWords",true);  //调用AddDataToServer
+        httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+        httpRequest.send(JSON.stringify(cdata)); //设置为发送给服务器数据
+        //回调函数，获取返回数据
+        httpRequest.onreadystatechange = function() {
+            if (httpRequest.readyState == 4) {
+                //根据服务器的响应内容格式处理响应结果
+                if(httpRequest.getResponseHeader('content-type')==='application/json'){
+                    var result = JSON.parse(httpRequest.responseText);
+                    if(result[0]){
+                        data2=result;
+                        index=1;
+                        clear();
+                        showin();
+                    }
+                    else{
+                        alert("没有相关数据");
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    //审核
+    function shenhe1(){
+        var tr = $("#table1 tr");
+        var td = $(tr[1]).find("td");
+        gotosh($(td[1]).eq(0).text(),1);
+    }
+    function shenhe2(){
+        var tr = $("#table1 tr");
+        var td = $(tr[2]).find("td");
+        gotosh($(td[1]).eq(0).text(),2);
+    }
+    function shenhe3(){
+        var tr = $("#table1 tr");
+        var td = $(tr[3]).find("td");
+        gotosh($(td[1]).eq(0).text(),3);
+    }
+    function shenhe4(){
+        var tr = $("#table1 tr");
+        var td = $(tr[4]).find("td");
+        gotosh($(td[1]).eq(0).text(),4);
+    }
+    function shenhe5(){
+        var tr = $("#table1 tr");
+        var td = $(tr[5]).find("td");
+        gotosh($(td[1]).eq(0).text(),5);
+    }
+    function shenhe6(){
+        var tr = $("#table1 tr");
+        var td = $(tr[6]).find("td");
+        gotosh($(td[1]).eq(0).text(),6);
+    }
+    function shenhe7(){
+        var tr = $("#table1 tr");
+        var td = $(tr[7]).find("td");
+        gotosh($(td[1]).eq(0).text(),7);
+    }
+    function shenhe8(){
+        var tr = $("#table1 tr");
+        var td = $(tr[8]).find("td");
+        gotosh($(td[1]).eq(0).text(),8);
+    }
+    function gotosh(a,b){
+
+        var data={"u_email":useremail,"w_content":a};
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        httpRequest.open("POST", "http://localhost:8088/words/checkWords",true);  //调用AddDataToServer
+        httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+        httpRequest.send(JSON.stringify(data)); //设置为发送给服务器数据
+        //回调函数，获取返回数据
+        httpRequest.onreadystatechange = function() {
+            if (httpRequest.readyState == 4) {
+                //根据服务器的响应内容格式处理响应结果
+                if(httpRequest.getResponseHeader('content-type')==='application/json'){
+                    var result = JSON.parse(httpRequest.responseText);
+                    if(result["code"]===5001){
+                        document.getElementById("b"+b).style.display="none";
+                        document.getElementById("p"+b).style.display="block";
+                        document.getElementById("p"+b).style="width: 122px;height: 15px;background-color: rgba(255, 255, 255, 100);color: rgba(16, 16, 16, 56);font-size: 16px;text-align: center;";
+                        getdata();
+                    }
+                    else{
+                        alert("审核失败");
+                    }
+                }
+            }
+        }
+    }
+    function getdata(){
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        httpRequest.open("POST", "http://localhost:8088/words/showWords",true);  //调用AddDataToServer
+        httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+        httpRequest.send(JSON.stringify(data)); //设置为发送给服务器数据
+        //回调函数，获取返回数据
+        httpRequest.onreadystatechange = function() {
+            if (httpRequest.readyState == 4) {
+                //根据服务器的响应内容格式处理响应结果
+                if(httpRequest.getResponseHeader('content-type')==='application/json'){
+                    var result = JSON.parse(httpRequest.responseText);
+                    if(result[0]){
+                        data2=result;
+                    }
+                }
+            }
+        }
+    }
+</script>
+</html>

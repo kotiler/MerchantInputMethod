@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.type.dao.UserDao">
+    <select id="checkEmailNum" resultType="Integer">
+        SELECT count(*) FROM user
+        WHERE u_email= #{u_email}
+    </select>
+    <select id="getuser_Password" resultType="String">
+        SELECT u_password FROM user
+        WHERE u_email= #{u_email}
+    </select>
+    <select id="getIdentity" resultType="Integer">
+        SELECT u_identity FROM user
+        WHERE u_email= #{u_email}
+    </select>
+    <insert id="addUser">
+        insert into user(u_email, u_password, u_identity ,u_name,u_gender,u_age,c_no)
+        value (#{u_email},#{u_password},#{u_identity},#{u_name},#{u_gender},#{u_age},#{c_no})
+    </insert>
+
+    <update id="change" >
+        update user set u_password=#{u_password}
+        where u_email= #{u_email}
+    </update>
+
+    <update id="changeUserInfo">
+        update user set u_identity =#{u_identity},u_name=#{u_name},u_gender=#{u_gender},u_age=#{u_age},c_no=#{c_no}
+        where u_email= #{u_email}
+    </update>
+
+    <select id="showUserInfo" resultType="com.type.bean.User">
+        SELECT * FROM user
+        WHERE u_email= #{u_email}
+    </select>
+
+</mapper>

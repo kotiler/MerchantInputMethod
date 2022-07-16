@@ -1,0 +1,26 @@
+
+# mysql
+spring:
+  #邮箱发送验证码
+  mail:
+    #发件人邮箱相关配置
+    host: smtp.qq.com
+    port: 587
+    #配置个人账号和密码
+    username: 1437183840@qq.com
+    password: waechnpnzvnkigje
+    default-encoding: utf-8
+  #MySQL配置
+  datasource:
+    driverClassName:  com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/type?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: heyuhao2019151069
+
+mybatis:
+  mapper-locations: classpath:mapper/**.xml
+  type-aliases-package: com.example.demo.model
+
+server:
+  port: 8088
+

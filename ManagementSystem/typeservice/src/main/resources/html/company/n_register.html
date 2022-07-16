@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>注册</title>
+</head>
+<body style="background-color: rgba(240, 242, 247, 100);">
+<div>
+  <img src="imgr.png" ;width="150px" ; height="150px" ; style="position:absolute; left:290px; top:30px; ">
+</div>
+
+<!..文字..>
+<p style="width: 70px;height: 100px;color: rgba(16, 16, 16, 100);font-size: 14px;text-align: right;position:absolute;left: 580px;top: 220px;">邮箱地址: </p>
+<p style="width: 70px;height: 100px;color: rgba(16, 16, 16, 100);font-size: 14px;text-align: right;position:absolute;left: 580px;top: 460px;">密   码: </p>
+<p style="width: 70px;height: 100px;color: rgba(16, 16, 16, 100);font-size: 14px;text-align: right;position:absolute;left: 580px;top: 520px;">重复密码: </p>
+<p style="width: 70px;height: 100px;color: rgba(16, 16, 16, 100);font-size: 14px;text-align: right;position:absolute;left: 580px;top: 580px;">验 证 码: </p>
+<p style="width: 70px;height: 100px;color: rgba(16, 16, 16, 100);font-size: 14px;text-align: right;position:absolute;left: 580px;top: 400px;">经营范围: </p>
+<p style="width: 70px;height: 100px;color: rgba(16, 16, 16, 100);font-size: 14px;text-align: right;position:absolute;left: 580px;top: 280px;">公司名称: </p>
+<p style="width: 70px;height: 100px;color: rgba(16, 16, 16, 100);font-size: 14px;text-align: right;position:absolute;left: 580px;top: 340px;">公司地址: </p>
+
+
+<!..警告信息..>
+
+<p id="wordwarn" style='width: 231px; height: 20px; color: rgba(236, 56, 56, 94); font-size: 14px;position:absolute; left:680px;top:550px;'></p>
+
+<form id="re" action="regist2.php" method="post">
+  <!..输入框..>
+  <input type="text" name="username" placeholder="请输入邮箱地址" id="user" style="width: 300px;height: 40px;line-height: 20px;border-radius: 30px;
+     border: 1px solid rgba(211, 211, 211, 100);position:absolute; left:660px; top:220px; padding-left:18px;">
+
+  <input type="text" name="uname" placeholder="请输入公司名称" id="uname" style="width: 300px;height: 40px;line-height: 20px;border-radius: 30px;
+     border: 1px solid rgba(211, 211, 211, 100);position:absolute; left:660px; top:280px; padding-left:18px;">
+
+  <input type="text" name="uadress" placeholder="请输入公司地址" id="uadress" style="width: 300px;height: 40px;line-height: 20px;border-radius: 30px;
+     border: 1px solid rgba(211, 211, 211, 100);position:absolute; left:660px; top:340px; padding-left:18px;">
+
+  <input type="text" name="utype" placeholder="请输入公司经营范围" id="utype" style="width: 300px;height: 40px;line-height: 20px;border-radius: 30px;
+     border: 1px solid rgba(211, 211, 211, 100);position:absolute; left:660px; top:400px;padding-left:18px; ">
+
+  <input type="password" name="password" placeholder="请输入密码" id="pass1" style="width: 300px;height: 40px;line-height: 20px;border-radius: 30px;
+     border: 1px solid rgba(211, 211, 211, 100);position:absolute; left:660px; top:460px; padding-left:18px;">
+
+  <input type="password" name="newpassword" placeholder="请再次输入密码" id="pass2" style="width: 300px;height: 40px;line-height: 20px;border-radius: 30px;
+     border: 1px solid rgba(211, 211, 211, 100);position:absolute; left:660px; top:520px;padding-left:18px; ">
+
+  <input type="text" name="emailword" placeholder="请输入邮箱验证码" id="word" style="width: 300px;height: 40px;line-height: 20px;border-radius: 30px;
+     border: 1px solid rgba(211, 211, 211, 100);position:absolute; left:660px; top:580px;padding-left:18px; ">
+
+  <!..按钮..>
+  <input type="button" name="send" value="发送验证码" id="send" style="border:none;width: 80px;height: 20px;line-height: 20px;border-radius: 37px;
+      background-color: rgba(57, 82, 253, 100);color: rgba(255, 255, 255, 100);font-size: 10px;text-align: center;position:absolute; left:880px; top:592px;" onclick="sendemail(this)">
+
+  <input type="button"  value="确认注册" onclick="check()" style="border:none;width: 320px;height: 40px;line-height: 23px;border-radius: 37px;
+      background-color: rgba(57, 82, 253, 100);color: rgba(255, 255, 255, 100);font-size: 16px;text-align: center;position:absolute; left:660px; top:640px; ">
+
+</form>
+<script>
+  var emailword;
+  var user;
+  var pass1;
+  var uname;
+  var uaddress;
+  var utype;
+  function sendemail(object){
+
+    document.getElementById("wordwarn").innerHTML="";
+    user=document.getElementById('user').value;
+    pass1=document.getElementById('pass1').value;
+    uname=document.getElementById('uname').value;
+    utype=document.getElementById('utype').value;
+    uaddress=document.getElementById('uadress').value;
+    //清空提示
+    document.getElementById("wordwarn").innerHTML="";
+
+
+    //获取邮箱，密码的值
+
+    var pass2=document.getElementById('pass2').value;
+
+    if(pass2==='' || pass1==='' || uaddress==='' || utype==='' || uname==='' || user==='')
+    {
+      document.getElementById("wordwarn").innerHTML="存在输入信息为空";
+    }
+    else{
+      if(pass1 !== pass2 )
+      {
+        document.getElementById("wordwarn").innerHTML="两次输入的密码不一致";
+      }
+      else{
+        time(object);
+        var data={"u_email":user};
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        httpRequest.open("POST", "http://localhost:8088/user/send", true);  //调用AddDataToServer
+        httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+        httpRequest.send(JSON.stringify(data)); //设置为发送给服务器数据
+        //回调函数，获取返回数据
+        httpRequest.onreadystatechange = function() {
+          if (httpRequest.readyState == 4) {
+            //根据服务器的响应内容格式处理响应结果
+            if(httpRequest.getResponseHeader('content-type')==='application/json'){
+              var result = JSON.parse(httpRequest.responseText);
+              emailword=result["identifingCode"];
+            }
+          }
+        }
+      }
+    }
+
+  }
+  var wait=60;
+  //验证码按钮计时
+  function time(object){
+    if(wait==0){
+      document.getElementById("send").style.backgroundColor="rgba(57, 82, 253, 100)";
+      object.removeAttribute("disabled");
+      object.value ="发送验证码";
+      wait = 60;
+    }else{
+      document.getElementById("send").style.backgroundColor="gray";
+      object.setAttribute("disabled",true);
+      wait--;
+      object.value = wait + "S";
+      setTimeout(function(){time(object)},1000);
+    }
+  }
+
+  function check(){
+    var eword=document.getElementById("word").value;
+    if(emailword=== eword){
+      user=document.getElementById('user').value;
+      pass1=document.getElementById('pass1').value;
+      name=document.getElementById('uname').value;
+      address=document.getElementById('uadress').value;
+      type=document.getElementById('utype').value;
+
+      var data={"u_email":user,"u_password":pass1,"c_name":name,"c_address":address,"c_type":type};
+      var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+      httpRequest.open("POST", "http://localhost:8088/user/register", true);  //调用AddDataToServer
+      httpRequest.setRequestHeader("Content-type", "application/JSON"); //设置请求头信
+      httpRequest.send(JSON.stringify(data)); //设置为发送给服务器数据
+      //回调函数，获取返回数据
+      httpRequest.onreadystatechange = function() {
+        if (httpRequest.readyState == 4) {
+          //根据服务器的响应内容格式处理响应结果
+          if(httpRequest.getResponseHeader('content-type')==='application/json'){
+            var result = JSON.parse(httpRequest.responseText);
+            //根据返回结果判断验证码是否正确
+            if(result["code"]===3000){
+              document.getElementById("re").submit();
+            }
+            else{
+              document.getElementById("wordwarn").innerHTML="注册失败，邮箱已经注册!";
+            }
+          }
+        }
+      }
+
+    }
+    else{
+      document.getElementById("wordwarn").innerHTML="验证码出错！";
+    }
+
+  }
+</script>
+
+
+
+
+</body>
+</html>
