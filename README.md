@@ -8,8 +8,6 @@
 
 * 后端：SpringBoot、Swagger、Mysql（小组独立完成）
 
-* 网页：Html三件套等（小组独立完成）
-
 * 客户端：在github的别人的VE-inputMethod项目的基础上进行修改和创作。
 
   
