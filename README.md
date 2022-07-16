@@ -6,7 +6,7 @@
 
 * 包括后台管理系统（网页版）和“商家输入法”APP客户端。
 
-* 后端：SpringBoot、Swagger、Mysql（小组独立完成）
+* 后端：SpringBoot、Swagger、Mysql
 
 * 客户端：在github的别人的VE-inputMethod项目的基础上进行修改和创作。
 
