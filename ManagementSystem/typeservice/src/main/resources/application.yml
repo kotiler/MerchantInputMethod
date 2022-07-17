@@ -8,7 +8,7 @@ spring:
     port: 587
     #配置个人账号和密码
     username: 1437183840@qq.com
-    password: waechnpnzvnkigje
+    password: *********
     default-encoding: utf-8
   #MySQL配置
   datasource:
